@@ -1,0 +1,258 @@
+<!-- 
+faive_metadata.xml
+metadata for Faive Hand MJCF model
+
+Copyright 2023 Soft Robotics Lab, ETH Zurich
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<mujoco>
+    <compiler angle="radian"/>
+    <option collision="all"/>
+    <default>
+        <!-- use same geom params as the Shadow Hand model in IsaacGymEnv for now -->
+        <!-- the density is adjusted so that the total weight of the hand part (not including the base) is the same as the real hand (106g) (therefore the base will have a wrong mass, which shouldn't matter for now) -->
+        <geom rgba="1 1 1 1" type="mesh" density="662" friction="1 0.005 0.001" condim="3" margin="0.0005" contype="1" conaffinity="1"/>
+        <!-- use same joint params as IsaacGymEnv for now -->
+        <!-- TODO: joint damping and position control kp should eventually be set to sysID'ed values -->
+        <joint type="hinge" limited="false" damping="0.05" armature="0.001" margin="0.01" frictionloss="0.001"/>
+        <!-- actuator configuration -->
+        <position ctrllimited="false" forcelimited="true" forcerange="-10 10" kp="2."/>
+        <!-- the tendon which limits the two joints creating the rolling joint should be very limited in its length range -->
+        <!--tendon limited="true" range="-0.001 0.001"/-->
+    </default>
+    <asset>
+        <!-- IsaacGym somehow does not respect the default mesh scale so set each of them manually here... -->
+        <mesh name="base" file="mesh/base.stl" scale="0.0001 0.0001 0.0001"/>
+	<mesh name="HAND" file="mesh/HAND.STL"/>
+	<mesh name="TH_LINK_1" file="mesh/TH_LINK_1.STL"/>
+	<mesh name="TH_LINK_2" file="mesh/TH_LINK_2.STL"/>
+	<mesh name="TH_LINK_3" file="mesh/TH_LINK_3.STL"/>
+	<mesh name="TH_LINK_4" file="mesh/TH_LINK_4.STL"/>
+	<mesh name="IN_LINK_1" file="mesh/IN_LINK_1.STL"/>
+	<mesh name="IN_LINK_2" file="mesh/IN_LINK_2.STL"/>
+	<mesh name="IN_LINK_3" file="mesh/IN_LINK_3.STL"/>
+	<mesh name="IN_LINK_4" file="mesh/IN_LINK_4.STL"/>
+	<mesh name="MI_LINK_1" file="mesh/MI_LINK_1.STL"/>
+	<mesh name="MI_LINK_2" file="mesh/MI_LINK_2.STL"/>
+	<mesh name="MI_LINK_3" file="mesh/MI_LINK_3.STL"/>
+	<mesh name="MI_LINK_4" file="mesh/MI_LINK_4.STL"/>
+	<mesh name="RI_LINK_1" file="mesh/RI_LINK_1.STL"/>
+	<mesh name="RI_LINK_2" file="mesh/RI_LINK_2.STL"/>
+	<mesh name="RI_LINK_3" file="mesh/RI_LINK_3.STL"/>
+	<mesh name="RI_LINK_4" file="mesh/RI_LINK_4.STL"/>
+	<mesh name="RI_LINK_5" file="mesh/RI_LINK_5.STL"/>
+	<mesh name="PI_LINK_1" file="mesh/PI_LINK_1.STL"/>
+	<mesh name="PI_LINK_2" file="mesh/PI_LINK_2.STL"/>
+	<mesh name="PI_LINK_3" file="mesh/PI_LINK_3.STL"/>
+	<mesh name="PI_LINK_4" file="mesh/PI_LINK_4.STL"/>
+	<mesh name="PI_LINK_5" file="mesh/PI_LINK_5.STL"/>
+
+        
+    </asset>
+    <contact>
+        <!-- neighboring bodies are excluded from contact calculation -->
+        <exclude body1="HAND" body2="TH_LINK_1"/>
+        <exclude body1="TH_LINK_1" body2="TH_LINK_2"/>
+        <exclude body1="TH_LINK_2" body2="TH_LINK_3"/>
+        <exclude body1="TH_LINK_3" body2="TH_LINK_4"/>
+
+        <exclude body1="HAND" body2="IN_LINK_1"/>
+        <exclude body1="IN_LINK_1" body2="IN_LINK_2"/>
+        <exclude body1="IN_LINK_2" body2="IN_LINK_3"/>
+        <exclude body1="IN_LINK_3" body2="IN_LINK_4"/>
+        
+        <exclude body1="HAND" body2="MI_LINK_1"/>
+        <exclude body1="MI_LINK_1" body2="MI_LINK_2"/>
+        <exclude body1="MI_LINK_2" body2="MI_LINK_3"/>
+        <exclude body1="MI_LINK_3" body2="MI_LINK_4"/>
+        
+        <exclude body1="HAND" body2="RI_LINK_1"/>
+        <exclude body1="RI_LINK_1" body2="RI_LINK_2"/>
+        <exclude body1="RI_LINK_2" body2="RI_LINK_3"/>
+        <exclude body1="RI_LINK_3" body2="RI_LINK_4"/>
+        <exclude body1="RI_LINK_4" body2="RI_LINK_5"/>
+        
+        <exclude body1="HAND" body2="PI_LINK_1"/>
+        <exclude body1="PI_LINK_1" body2="PI_LINK_2"/>
+        <exclude body1="PI_LINK_2" body2="PI_LINK_3"/>
+        <exclude body1="PI_LINK_3" body2="PI_LINK_4"/>
+        <exclude body1="PI_LINK_4" body2="PI_LINK_5"/>
+        
+        
+       
+    </contact>
+
+    <sensor>
+        <jointpos name="TH_JOINT_1" joint="TH_JOINT_1"/>
+        <jointpos name="TH_JOINT_2" joint="TH_JOINT_2"/>
+        <jointpos name="TH_JOINT_3" joint="TH_JOINT_3"/>
+        <jointpos name="TH_JOINT_4" joint="TH_JOINT_4"/>
+
+        <jointpos name="IN_JOINT_1" joint="IN_JOINT_1"/>
+        <jointpos name="IN_JOINT_2" joint="IN_JOINT_2"/>
+        <jointpos name="IN_JOINT_3" joint="IN_JOINT_3"/>
+        <jointpos name="IN_JOINT_4" joint="IN_JOINT_4"/>
+        
+        <jointpos name="MI_JOINT_1" joint="MI_JOINT_1"/>
+        <jointpos name="MI_JOINT_2" joint="MI_JOINT_2"/>
+        <jointpos name="MI_JOINT_3" joint="MI_JOINT_3"/>
+        <jointpos name="MI_JOINT_4" joint="MI_JOINT_4"/>
+        
+        <jointpos name="RI_JOINT_1" joint="RI_JOINT_1"/>
+        <jointpos name="RI_JOINT_2" joint="RI_JOINT_2"/>
+        <jointpos name="RI_JOINT_3" joint="RI_JOINT_3"/>
+        <jointpos name="RI_JOINT_4" joint="RI_JOINT_4"/>
+        <jointpos name="RI_JOINT_5" joint="RI_JOINT_5"/>
+        
+        <jointpos name="PI_JOINT_1" joint="PI_JOINT_1"/>
+        <jointpos name="PI_JOINT_2" joint="PI_JOINT_2"/>
+        <jointpos name="PI_JOINT_3" joint="PI_JOINT_3"/>
+        <jointpos name="PI_JOINT_4" joint="PI_JOINT_4"/>
+        <jointpos name="PI_JOINT_5" joint="PI_JOINT_5"/>
+
+    </sensor>
+    
+    <actuator>
+        <!-- 
+        For this version of the Faive Hand, the first two joints aren't rolling contact joints.
+        This means those fingers move 0.5x as much as the rolling contact joints with the same joint angle goal.
+        Thus, set kp for these joints to be half the default value of 2, to effectively achieve the same joint stiffness.
+        The actuators for the distal joints are set to have a kp twice the default value, since they must move two joints.
+        
+        The joints with rolling contacts bend twice as much as the commanded joint angle. This is different from the implementation in GripperController, which receive the total joint angle as input.
+        i.e. if 0.1 is sent to a rolling contact joint in mujoco, the joint bends 0.2 in total, achieving the same result as sending 0.2 in GripperController.
+        
+        note: the "gear" attribute allows a scaling to be applied from the actuator dimensions to the joint dimensions, but it seems not to be completely supported in IsaacGym so don't use it.
+        -->
+        <position name="TH_JOINT_1" joint="TH_JOINT_1" ctrlrange="-0 1.57" kp="50"/>
+        <position name="TH_JOINT_2" joint="TH_JOINT_2" ctrlrange="-0.2 0.2" kp="50"/>
+        <position name="TH_JOINT_3" joint="TH_JOINT_3" ctrlrange="0 1.57" kp="50"/>
+        <position name="TH_JOINT_4" joint="TH_JOINT_4" ctrlrange="0 1.57" kp="50"/>
+
+	<position name="IN_JOINT_1" joint="IN_JOINT_1" ctrlrange="0 1.5" kp="50"/>
+        <position name="IN_JOINT_2" joint="IN_JOINT_2" ctrlrange="-0.2 0.2" kp="50"/>
+        <position name="IN_JOINT_3" joint="IN_JOINT_3" ctrlrange="0 1.5" kp="50"/>
+        <position name="IN_JOINT_4" joint="IN_JOINT_4" ctrlrange="0 1.5" kp="50"/>
+        
+        <position name="MI_JOINT_1" joint="MI_JOINT_1" ctrlrange="0 1.5" kp="50"/>
+        <position name="MI_JOINT_2" joint="MI_JOINT_2" ctrlrange="-0.2 0.2" kp="50"/>
+        <position name="MI_JOINT_3" joint="MI_JOINT_3" ctrlrange="0 1.5" kp="50"/>
+        <position name="MI_JOINT_4" joint="MI_JOINT_4" ctrlrange="0 1.5" kp="50"/>
+        
+        <position name="RI_JOINT_1" joint="RI_JOINT_1" ctrlrange="0 0.5" kp="50"/>
+        <position name="RI_JOINT_2" joint="RI_JOINT_2" ctrlrange="0 1.5" kp="50"/>
+        <position name="RI_JOINT_3" joint="RI_JOINT_3" ctrlrange="-0.2 0.2" kp="50"/>
+        <position name="RI_JOINT_4" joint="RI_JOINT_4" ctrlrange="0 1.5" kp="50"/>
+        <position name="RI_JOINT_5" joint="RI_JOINT_5" ctrlrange="0 1.5" kp="50"/>
+        
+        <position name="PI_JOINT_1" joint="PI_JOINT_1" ctrlrange="0 0.5" kp="50"/>
+        <position name="PI_JOINT_2" joint="PI_JOINT_2" ctrlrange="0 1.5" kp="50"/>
+        <position name="PI_JOINT_3" joint="PI_JOINT_3" ctrlrange="-0.2 0.2" kp="50"/>
+        <position name="PI_JOINT_4" joint="PI_JOINT_4" ctrlrange="0 1.5" kp="50"/>
+        <position name="PI_JOINT_5" joint="PI_JOINT_5" ctrlrange="0 1.5" kp="50"/>
+
+
+    </actuator>
+
+    <!-- the rolling contact joints are modeled by two virtual joints, which have a constraint set here to constrain them to move together -->
+    <!--The two distal joints are linked together by a tendon, which is done with the "*_jointlink" fixed tendons
+        Some limitations:
+        - mujoco only supports a linear combination of joint angles for fixed tendons, so it is an approximation of the actual linkage.
+          The relation y = 0.7131 x + 0.06959 was derived from get_coupling_eqn() in finger_kinematics.py (modified for a 1st degree polyfit instead of 2nd)
+          where x is PIP angle, y is DIP angle. The y-intercept is ignored.
+        - the two joints are not always coupled in reality- for example, the DIP joint can be moved somewhat freely when the PIP joint is fixed (, at least on the older version of the hand).
+          This model does not capture such relations. It may be possible to replicate it by setting an appropriate tendon range.
+        - in IsaacGym, if there are multiple joints being connected through tendons, they must follow a tree structure and be ordered as such,
+          e.g. tendon 1: [pp2mp_virt ->  pp2mp], tendon 2: [pp2mp -> mp2dp_virt], tendon 3: [mp2dp_virt -> mp2dp]
+    -->
+    <tendon>
+        <!-- Thumb -->
+        <fixed name="TH_JOINT_1">
+            <joint joint="TH_JOINT_1" coef="-1"/>
+        </fixed>
+        <fixed name="TH_JOINT_2">
+            <joint joint="TH_JOINT_2" coef="-1"/>
+        </fixed>
+        <fixed name="TH_JOINT_3">
+            <joint joint="TH_JOINT_3" coef="-1"/>
+        </fixed>
+        <fixed name="TH_JOINT_4">
+            <joint joint="TH_JOINT_4" coef="-1"/>
+        </fixed>
+
+        <!-- Index finger -->
+        <fixed name="IN_JOINT_1">
+            <joint joint="IN_JOINT_1" coef="-1"/>
+        </fixed>
+        <fixed name="IN_JOINT_2">
+            <joint joint="IN_JOINT_2" coef="-1"/>
+        </fixed>
+        <fixed name="IN_JOINT_3">
+            <joint joint="IN_JOINT_3" coef="-1"/>
+        </fixed>
+        <fixed name="IN_JOINT_4">
+            <joint joint="IN_JOINT_4" coef="-1"/>
+        </fixed>
+
+        <!-- Middle finger -->
+        <fixed name="MI_JOINT_1">
+            <joint joint="MI_JOINT_1" coef="-1"/>
+        </fixed>
+        <fixed name="MI_JOINT_2">
+            <joint joint="MI_JOINT_2" coef="-1"/>
+        </fixed>
+        <fixed name="MI_JOINT_3">
+            <joint joint="MI_JOINT_3" coef="-1"/>
+        </fixed>
+        <fixed name="MI_JOINT_4">
+            <joint joint="MI_JOINT_4" coef="-1"/>
+        </fixed>
+
+        <!-- Ring finger -->
+        <fixed name="RI_JOINT_1">
+            <joint joint="RI_JOINT_1" coef="-1"/>
+        </fixed>
+        <fixed name="RI_JOINT_2">
+            <joint joint="RI_JOINT_2" coef="-1"/>
+        </fixed>
+        <fixed name="RI_JOINT_3">
+            <joint joint="RI_JOINT_3" coef="-1"/>
+        </fixed>
+        <fixed name="RI_JOINT_4">
+            <joint joint="RI_JOINT_4" coef="-1"/>
+        </fixed>
+        <fixed name="RI_JOINT_5">
+            <joint joint="RI_JOINT_5" coef="-1"/>
+        </fixed>
+        
+
+        <!-- Pinky -->
+        <fixed name="PI_JOINT_1">
+            <joint joint="PI_JOINT_1" coef="-1"/>
+        </fixed>
+        <fixed name="PI_JOINT_2">
+            <joint joint="PI_JOINT_2" coef="-1"/>
+        </fixed>
+        <fixed name="PI_JOINT_3">
+            <joint joint="PI_JOINT_3" coef="-1"/>
+        </fixed>
+        <fixed name="PI_JOINT_4">
+            <joint joint="PI_JOINT_4" coef="-1"/>
+        </fixed>
+        <fixed name="PI_JOINT_5">
+            <joint joint="PI_JOINT_5" coef="-1"/>
+        </fixed>
+    </tendon>
+</mujoco>

@@ -34,7 +34,7 @@ env:
   hand_fix_base: True
 
   # hand start pose position (x, y, z)
-  hand_start_p: [0, 0, 0.5]
+  hand_start_p: [0, 0, 0.5] 
   # hand start pose quaternion (x, y, z, w)
   # rotate 200 degrees around x axis to make palm face up, and slightly tilt it downwards
   hand_start_r: [0.9848078, 0, 0, -0.1736482]

@@ -1,0 +1,148 @@
+<!-- 
+faive_structure.xml
+kinematic and dynamic structure data for Faive Hand MJCF model
+
+Copyright 2023 Soft Robotics Lab, ETH Zurich
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<mujoco model="right_faive">
+
+    <body name="root">
+        <!-- so that the base can be colored separately in IsaacGym, make it into its own body -->
+        <geom mesh="base" rgba="0.2 0.2 0.2 1"/>
+        <body name="HAND" pos="0 0 0" euler="1.57 3.14 0">
+            <!-- So that the contact convex hull can be calculated for each distinct component rather than for the entire palm structure, separate it into separate geoms -->
+            <geom mesh="HAND"/>
+            
+            
+            
+            <body name="TH_LINK_1" pos="0.036 0 0.012405" quat="0.65328 0.653282 0.270598 -0.270599">
+      <inertial pos="-0.0118996 0.0280851 -0.000115782" quat="0.611186 0.288084 -0.614978 0.406523" mass="0.0100851" diaginertia="1.48286e-06 1.36602e-06 7.4884e-07"/>
+      <joint name="TH_JOINT_1" pos="0 0 0" axis="0.707107 -0.707107 0" range="0 1.57"/>
+      <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="TH_LINK_1"/>
+      <body name="TH_LINK_2" pos="0 0.050094 0">
+        <inertial pos="-0.00856116 1.7296e-08 0.000109333" quat="0.653279 0.270604 0.270604 0.653279" mass="0.00185107" diaginertia="6.12448e-08 4.95e-08 4.94365e-08"/>
+        <joint name="TH_JOINT_2" pos="0 0 0" axis="1 0 0" range="-0.2 0.2"/>
+        <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="TH_LINK_2"/>
+        <body name="TH_LINK_3" pos="-0.00845183 0 0" quat="0.999937 0 0 0.0111998">
+          <inertial pos="0.00036515 0.017729 -0.000846042" quat="0.705962 0.707668 -0.0147738 0.024598" mass="0.00737686" diaginertia="8.00893e-07 7.90372e-07 5.21027e-07"/>
+          <joint name="TH_JOINT_3" pos="0 0 0" axis="0 0 1" range="0 1.57"/>
+          <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="TH_LINK_3"/>
+          <body name="TH_LINK_4" pos="0 0.03 0">
+            <inertial pos="-7.77203e-05 0.00997137 -0.0011936" quat="0.742186 0.670166 -0.00564018 -0.00237388" mass="0.0072977" diaginertia="8.02293e-07 7.70425e-07 3.11024e-07"/>
+            <joint name="TH_JOINT_4" pos="0 0 0" axis="1 0 0" range="0 1.57"/>
+            <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="TH_LINK_4"/>
+          </body>
+        </body>
+      </body>
+    </body>
+    <body name="IN_LINK_1" pos="0.026 0 0.0975" quat="0.707105 0.707108 0 0">
+      <inertial pos="0.00989067 1.84845e-08 0.000109332" quat="0.653282 0.270598 0.270598 0.653282" mass="0.00185107" diaginertia="6.12448e-08 4.95e-08 4.94366e-08"/>
+      <joint name="IN_JOINT_1" pos="0 0 0" axis="1 0 0" range="0 1.57"/>
+      <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="IN_LINK_1"/>
+      <body name="IN_LINK_2" pos="0.01 0 0">
+        <inertial pos="0.000371358 0.0177252 -0.000853309" quat="0.705757 0.707878 -0.014798 0.0244199" mass="0.00738683" diaginertia="8.0051e-07 7.90004e-07 5.20794e-07"/>
+        <joint name="IN_JOINT_2" pos="0 0 0" axis="0 0 1" range="-0.2 0.2"/>
+        <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="IN_LINK_2"/>
+        <body name="IN_LINK_3" pos="0 0.03 0">
+          <inertial pos="0.000284173 0.0130328 -0.000298605" quat="0.688726 0.724717 -0.0160716 0.0135359" mass="0.0074501" diaginertia="9.46216e-07 9.2667e-07 4.62305e-07"/>
+          <joint name="IN_JOINT_3" pos="0 0 0" axis="1 0 0" range="0 1.57"/>
+          <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="IN_LINK_3"/>
+          <body name="IN_LINK_4" pos="0 0.025 0">
+            <inertial pos="-7.09171e-05 0.00993762 -0.00100474" quat="0.744359 0.667754 -0.0042169 -0.00404917" mass="0.00747067" diaginertia="8.15011e-07 7.80015e-07 3.314e-07"/>
+            <joint name="IN_JOINT_4" pos="0 0 0" axis="1 0 0" range="0 1.57"/>
+            <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="IN_LINK_4"/>
+          </body>
+        </body>
+      </body>
+    </body>
+    <body name="MI_LINK_1" pos="0 0 0.105" quat="0.707105 0.707108 0 0">
+      <inertial pos="0.00989067 1.84928e-08 0.000109332" quat="0.653281 0.2706 0.2706 0.653281" mass="0.00185107" diaginertia="6.12448e-08 4.95e-08 4.94366e-08"/>
+      <joint name="MI_JOINT_1" pos="0 0 0" axis="1 0 0" range="0 1.57"/>
+      <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="MI_LINK_1"/>
+      <body name="MI_LINK_2" pos="0.01 0 0">
+        <inertial pos="0.000371358 0.0177252 -0.000853309" quat="0.705757 0.707878 -0.014798 0.0244199" mass="0.00738683" diaginertia="8.0051e-07 7.90004e-07 5.20794e-07"/>
+        <joint name="MI_JOINT_2" pos="0 0 0" axis="0 0 1" range="-0.2 0.2"/>
+        <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="MI_LINK_2"/>
+        <body name="MI_LINK_3" pos="0 0.03 0">
+          <inertial pos="0.000284173 0.0130328 -0.000298605" quat="0.688726 0.724717 -0.0160716 0.0135359" mass="0.0074501" diaginertia="9.46216e-07 9.2667e-07 4.62305e-07"/>
+          <joint name="MI_JOINT_3" pos="0 0 0" axis="1 0 0" range="0 1.57"/>
+          <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="MI_LINK_3"/>
+          <body name="MI_LINK_4" pos="0 0.025 0">
+            <inertial pos="-7.09171e-05 0.00993762 -0.00100474" quat="0.744359 0.667754 -0.0042169 -0.00404917" mass="0.00747067" diaginertia="8.15011e-07 7.80015e-07 3.314e-07"/>
+            <joint name="MI_JOINT_4" pos="0 0 0" axis="1 0 0" range="0 1.57"/>
+            <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="MI_LINK_4"/>
+          </body>
+        </body>
+      </body>
+    </body>
+    <body name="RI_LINK_1" pos="-0.022687 0 0.039813" quat="0.707105 0.707108 0 0">
+      <inertial pos="0.00898107 0.0314088 2.08744e-05" quat="0.473623 0.551378 -0.41595 0.546488" mass="0.0133488" diaginertia="2.8925e-06 2.7715e-06 1.0626e-06"/>
+      <joint name="RI_JOINT_1" pos="0 0 0" axis="0.707107 0.707107 0" range="0 0.5"/>
+      <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="RI_LINK_1"/>
+      <body name="RI_LINK_2" pos="0 0.0601874 0">
+        <inertial pos="0.00657803 1.84928e-08 0.000109332" quat="0.653281 0.2706 0.2706 0.653281" mass="0.00185107" diaginertia="6.12448e-08 4.95e-08 4.94366e-08"/>
+        <joint name="RI_JOINT_2" pos="0 0 0" axis="1 0 0" range="0 1.57"/>
+        <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="RI_LINK_2"/>
+        <body name="RI_LINK_3" pos="0.00668736 0 0">
+          <inertial pos="0.000371358 0.0177252 -0.000853309" quat="0.705757 0.707878 -0.014798 0.0244199" mass="0.00738683" diaginertia="8.0051e-07 7.90004e-07 5.20794e-07"/>
+          <joint name="RI_JOINT_3" pos="0 0 0" axis="0 0 1" range="-0.2 0.2"/>
+          <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="RI_LINK_3"/>
+          <body name="RI_LINK_4" pos="0 0.03 0">
+            <inertial pos="0.000284173 0.0130328 -0.000298605" quat="0.688726 0.724717 -0.0160716 0.0135359" mass="0.0074501" diaginertia="9.46216e-07 9.2667e-07 4.62305e-07"/>
+            <joint name="RI_JOINT_4" pos="0 0 0" axis="1 0 0" range="0 1.57"/>
+            <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="RI_LINK_4"/>
+            <body name="RI_LINK_5" pos="0 0.025 0">
+              <inertial pos="-7.09171e-05 0.00993762 -0.00100474" quat="0.744359 0.667754 -0.0042169 -0.00404917" mass="0.00747067" diaginertia="8.15011e-07 7.80015e-07 3.314e-07"/>
+              <joint name="RI_JOINT_5" pos="0 0 0" axis="1 0 0" range="0 1.57"/>
+              <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="RI_LINK_5"/>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+    <body name="PI_LINK_1" pos="-0.03125 0 0.03125" quat="0.707107 0.707107 0 0">
+      <inertial pos="-0.00774717 0.0176711 -1.67731e-05" quat="0.470595 0.572214 -0.397052 0.541721" mass="0.014835" diaginertia="3.57414e-06 3.41811e-06 1.19284e-06"/>
+      <joint name="PI_JOINT_1" pos="0 0 0" axis="0.707107 0.707107 0" range="0 0.5"/>
+      <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="PI_LINK_1"/>
+      <body name="PI_LINK_2" pos="-0.00075 0.04875 0">
+        <inertial pos="-0.0101093 1.84845e-08 0.000109332" quat="0.653282 0.270598 0.270598 0.653282" mass="0.00185107" diaginertia="6.12448e-08 4.95e-08 4.94366e-08"/>
+        <joint name="PI_JOINT_2" pos="0 0 0" axis="1 0 0" range="0 1.57"/>
+        <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="PI_LINK_2"/>
+        <body name="PI_LINK_3" pos="-0.01 0 0">
+          <inertial pos="0.000371358 0.0177252 -0.000853309" quat="0.705757 0.707878 -0.014798 0.0244199" mass="0.00738683" diaginertia="8.0051e-07 7.90004e-07 5.20794e-07"/>
+          <joint name="PI_JOINT_3" pos="0 0 0" axis="0 0 1" range="-0.2 0.2"/>
+          <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="PI_LINK_3"/>
+          <body name="PI_LINK_4" pos="0 0.03 0">
+            <inertial pos="0.000284173 0.0130328 -0.000298605" quat="0.688726 0.724717 -0.0160716 0.0135359" mass="0.0074501" diaginertia="9.46216e-07 9.2667e-07 4.62305e-07"/>
+            <joint name="PI_JOINT_4" pos="0 0 0" axis="1 0 0" range="0 1.57"/>
+            <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="PI_LINK_4"/>
+            <body name="PI_LINK_5" pos="0 0.025 0">
+              <inertial pos="-7.09171e-05 0.00993762 -0.00100474" quat="0.744359 0.667754 -0.0042169 -0.00404917" mass="0.00747067" diaginertia="8.15011e-07 7.80015e-07 3.314e-07"/>
+              <joint name="PI_JOINT_5" pos="0 0 0" axis="1 0 0" range="0 1.57"/>
+              <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="PI_LINK_5"/>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+
+
+
+            
+            
+        </body>
+    </body>
+    
+</mujoco>

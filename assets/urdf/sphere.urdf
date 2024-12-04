@@ -6,13 +6,15 @@
     <visual>
       <origin xyz="0 0 0"/>
       <geometry>
-        <mesh filename="sphere.obj" scale=".036 .036 .036"/>
+      	<mesh filename="sphere.obj" scale=".030 .030 .030"/>
+        <!--mesh filename="sphere.obj" scale=".024 .024 .024"/-->
       </geometry>
     </visual>
     <collision>
       <origin xyz="0 0 0"/>
       <geometry>
-        <sphere radius="0.036"/>
+        <sphere radius="0.030"/>
+        <!--sphere radius="0.024"/-->
       </geometry>
     </collision>
     <inertial>

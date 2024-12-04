@@ -1,0 +1,34 @@
+<mujoco model="20241028_ASSY_FINGER_HAND_URDF_TEST">
+  <compiler angle="radian" autolimits="true"/>
+  <statistic meansize="0.028335" extent="0.216294" center="-0.00323316 0.00975709 0.0417786"/>
+  <asset>
+    <mesh name="HAND_1" file="HAND_1.STL"/>
+    <mesh name="TH_LINK_1" file="TH_LINK_1.STL"/>
+    <mesh name="TH_LINK_2" file="TH_LINK_2.STL"/>
+    <mesh name="TH_LINK_3" file="TH_LINK_3.STL"/>
+    <mesh name="TH_LINK_4" file="TH_LINK_4.STL"/>
+  </asset>
+  <worldbody>
+    <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="HAND_1"/>
+    <body name="TH_LINK_1" pos="0 0.036 0.0124052" quat="0 0 0.382683 0.92388">
+      <inertial pos="0.000115782 0.0118996 0.0280851" quat="0.960386 0.265778 0.0573239 -0.0611156" mass="0.0100851" diaginertia="1.48286e-06 1.36602e-06 7.4884e-07"/>
+      <joint name="TH_JOINT_1" pos="0 0 0" axis="0 -0.707107 -0.707107"/>
+      <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="TH_LINK_1"/>
+      <body name="TH_LINK_2" pos="0 0 0.050094" quat="0 0.0183481 0 -0.999832">
+        <inertial pos="0.000109333 -0.00856116 1.78819e-08" quat="0.65328 0.270601 -0.65328 0.270601" mass="0.00185107" diaginertia="6.12448e-08 4.95e-08 4.94366e-08"/>
+        <joint name="TH_JOINT_2" pos="0 0 0" axis="0 1 0"/>
+        <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="TH_LINK_2"/>
+        <body name="TH_LINK_3" pos="0 -0.00845183 0" quat="0.999937 0.0111998 0 0">
+          <inertial pos="-0.000846015 0.000365101 0.017729" quat="0.726494 0.00576085 -0.00405801 0.687137" mass="0.00737682" diaginertia="8.00891e-07 7.90368e-07 5.21021e-07"/>
+          <joint name="TH_JOINT_3" pos="0 0 0" axis="1 0 0"/>
+          <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="TH_LINK_3"/>
+          <body name="TH_LINK_4" pos="0 0 0.03" quat="0.999832 0 -0.0183435 0">
+            <inertial pos="-0.0011936 -7.77203e-05 0.00997137" quat="0.707809 -0.0400167 -0.0320026 0.704543" mass="0.0072977" diaginertia="8.02293e-07 7.70425e-07 3.11024e-07"/>
+            <joint name="TH_JOINT_4" pos="0 0 0" axis="0 1 0"/>
+            <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="TH_LINK_4"/>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+</mujoco>
